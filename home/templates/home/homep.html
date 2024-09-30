@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <nav class="classy-navbar" id="essenceNav">
+                <a class="nav-brand" href=""><img src="{% static 'img/core-img/logo.png' %}" alt="Logo"></a>
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <div class="classy-menu">
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="#">Shop</a>
+                                
+                                <div class="megamenu">
+                                    <ul class="single-mega cn-col-4">
+                                        {% comment %} <li class="title"><b>Items</b></li> {% endcomment %}
+                                        <li><a href="{% url 'house' %}">Household</a></li>
+                                        <li><a href="{% url 'elect' %}">Electronic</a></li>
+                                        
+                                    </ul>
+                                    <ul class="single-mega cn-col-4">
+                                        {% comment %} <li class="title">Items</li> {% endcomment %}
+                                        <li><a href="{% url 'kitch' %}">Kitchen</a></li>
+                                        <li><a href="{% url 'bath' %}">Bathroom</a></li>
+                                        
+                                    </ul>
+                                    <ul class="single-mega cn-col-4">
+                                       {% comment %} <li class="title">Kid's Collection</li> {% endcomment %}
+                                       <li><a href="{% url 'home' %}">Popular</a></li>
+                                    </ul> 
+                                    <div class="single-mega cn-col-4">
+                                        <img src="{% static 'img/bg-img/bg-6.jpg' %}" alt="Mega Menu Image">
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="{% url 'more' %}">Home</a></li>
+                                    <li><a href="{% url 'more' %}">Shop</a></li>
+                                    <li><a href="{% url 'more' %}">Product Details</a></li>
+                                    <li><a href="{% url 'more' %}">Checkout</a></li>
+                                    <li><a href="{% url 'more' %}">Blog</a></li>
+                                    <li><a href="{% url 'more' %}">Single Blog</a></li>
+                                    <li><a href="{% url 'more' %}">Regular Page</a></li>
+                                    <li><a href="{% url 'more' %}">Contact</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'more' %}">Blog</a></li>
+                            <li><a href="{% url 'more' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="header-meta d-flex clearfix justify-content-end">
+                <div class="search-area">
+                    <form action="{% url 'search' %}" method="get">
+                        <input type="search" name="q" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <div class="favourite-area">
+                    <a href="{% url 'more' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt="Favorites"></a>
+                </div>
+                <div class="user-login-info">
+                    <a href="{% url 'more' %}"><img src="{% static 'img/core-img/user.svg' %}" alt="User"></a>
+                </div>
+                <div class="cart-area">
+                    <a href="{% url 'more' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt="Cart"> <span>{{ cart_item_count }}</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="new_arrivals_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2>All Products</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="popular-products-slides owl-carousel">
+                        {% for product in products %}
+                        <div class="single-product-wrapper">
+                            <div class="product-img">
+                                <img src="{{ product.img.url }}" alt="{{ product.name }}">
+                                <div class="product-favourite">
+                                    <a href="#" class="favme fa fa-heart"></a>
+                                </div>
+                            </div>
+                            <div class="product-description">
+                                <span>{{ product.name }}</span>
+                                <div class="product-description">
+                                    <h6>{{ product.description }}</h6>
+                                </div>
+                                <p class="product-price">${{ product.price }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block scripts %}
+   
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{%static 'js/jquery/jquery-2.2.4.min.js'%} "></script>
+    <!-- Popper js -->
+    <script src="{%static 'js/popper.min.js'%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- Plugins js -->
+    <script src="{%static 'js/plugins.js'%}"></script>
+    <!-- Classy Nav js -->
+    <script src="{%static 'js/classy-nav.min.js'%}"></script>
+    <!-- Active js -->
+    <script src="{%static 'js/active.js'%}"></script>
+
+    {% endblock %}
+</body>
+</html>
