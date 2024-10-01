@@ -34,18 +34,19 @@ def user_login(request):
     return redirect('home')
  else:
   if request.method=="POST":
-   username= request.POST.get('username')
-   password= request.POST.get('password')
+     username= request.POST.get('username')
+     password= request.POST.get('password')
 
-   user=authenticate(request,username=username, password=password)
+     user=authenticate(request,username=username, password=password)
 
-   if user is not None:
-    login(request, user)
-    return redirect('/homep/')
-  else:
-   messages.info(request, 'username or password is incorrect')
-   context=()
-   return render(request, "home/login.html")
+    
+     if user is not None:
+        login(request, user)
+        return redirect('/homep/')
+     else:
+       messages.info(request, 'username or password is incorrect')
+       context=()
+ return render(request, "home/login.html")
   
 def user_logout(request):
  logout(request)
