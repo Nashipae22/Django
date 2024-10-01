@@ -86,7 +86,8 @@
                     <a href="{% url 'more' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt="Favorites"></a>
                 </div>
                 <div class="user-login-info">
-                    <a href="{% url 'more' %}"><img src="{% static 'img/core-img/user.svg' %}" alt="User"></a>
+                    
+                    <a href="{% url 'logout' %}"><img src="{% static 'img/core-img/user.svg' %}" alt="User"></a>
                 </div>
                 <div class="cart-area">
                     <a href="{% url 'more' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt="Cart"> <span>{{ cart_item_count }}</span></a>
@@ -100,6 +101,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center">
+                        <h2>Hello, {{request.user}}<h2>
                         <h2>All Products</h2>
                         
                     </div>
