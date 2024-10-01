@@ -48,6 +48,13 @@ def user_login(request):
        context=()
  return render(request, "home/login.html")
   
+def account(request):
+  user=request.user
+  context={
+   'user':user
+  }
+  return render(request,'home/useraccount.html',context)
+
 def user_logout(request):
  logout(request)
  return redirect('/login/')
