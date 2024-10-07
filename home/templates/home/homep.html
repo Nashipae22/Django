@@ -16,13 +16,17 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/css/core-style.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body>
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <nav class="classy-navbar" id="essenceNav">
-                <a class="nav-brand" href=""><img src="{% static 'img/core-img/logo.png' %}" alt="Logo"></a>
+                <a class="" href="" > 
+                    <h6 style="font=5px">StuCommerce</h6>
+                    {% comment %} <img src="{% static 'img/stu.png' %}" alt="Logo"> {% endcomment %}
+                </a>
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
                 </div>
@@ -125,7 +129,7 @@
                                 <div class="product-description">
                                     <h6>{{ product.description }}</h6>
                                 </div>
-                                <p class="product-price">${{ product.price }}</p>
+                                <p class="product-price">Ksh {{ product.price }}</p>
                             </div>
                         </div>
                         {% endfor %}
