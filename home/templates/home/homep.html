@@ -23,9 +23,9 @@
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <nav class="classy-navbar" id="essenceNav">
-                <a class="" href="" > 
-                    <h6 style="font=5px">StuCommerce</h6>
-                    {% comment %} <img src="{% static 'img/stu.png' %}" alt="Logo"> {% endcomment %}
+                <a class="" href="{% url 'home' %}" > 
+                    
+                    <img src="{% static 'img/stu.png' %}" alt="Logo">
                 </a>
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -66,13 +66,12 @@
                                     <li><a href="{% url 'more' %}">Shop</a></li>
                                     <li><a href="{% url 'more' %}">Product Details</a></li>
                                     <li><a href="{% url 'more' %}">Checkout</a></li>
-                                    <li><a href="{% url 'more' %}">Blog</a></li>
                                     {% comment %} <li><a href="{% url 'more' %}">Single Blog</a></li>
                                     <li><a href="{% url 'more' %}">Regular Page</a></li> {% endcomment %}
                                     <li><a href="{% url 'more' %}">Contact</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{% url 'more' %}">Blog</a></li>
+                            <li><a href="{% url 'more' %}">Favorites</a></li>
                             <li><a href="{% url 'more' %}">Contact</a></li>
                         </ul>
                     </div>
@@ -89,13 +88,15 @@
                 <div class="favourite-area">
                     <a href="{% url 'more' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt="Favorites"></a>
                 </div>
-                <div class="user-login-info">
-                    
-                    <a href="{% url 'account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt="User"></a>
-                </div>
                 <div class="cart-area">
                     <a href="{% url 'more' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt="Cart"> <span>{{ cart_item_count }}</span></a>
                 </div>
+                <div class="user-login-info">
+                    
+                    <a href="{% url 'account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt="User"><b>{{request.user}}</b></a>
+                    
+                </div>
+                
             </div>
         </div>
     </header>
@@ -105,7 +106,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center">
-                        <h2>Hello, {{request.user}}<h2>
                         <h2>All Products</h2>
                         
                     </div>

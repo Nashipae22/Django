@@ -1,7 +1,7 @@
 from django.contrib import messages
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
-from. models import Products, Category
+from. models import Products, Category, Favorite
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from .forms import CreateUserForm
@@ -91,3 +91,20 @@ def search(request):
 @login_required(login_url="login")
 def more(request):
  return HttpResponse('Moree')
+
+# def add_favourite(request, productid):
+#  product=get_object_or_404()
+@login_required
+def add_to_favorites(request, product_id):
+    product = get_object_or_404(Products, id=product_id)
+    Favorite.objects.get_or_create(user=request.user, product=product)
+    return redirect('product_detail', product_id=product.id)
+
+def remove_favorite(request, productid):
+  product=get_object_or_404(Products, id=productid)
+  Favorite.objects.filter(user=request.user, product=product).delete()
+  return redirect('Favourite')
+
+def list_favourite(request):
+  favourites=Favorite.objects.filter(user=request.user)
+  return render(request, 'home/favourites.html',{'favourites':favourites})

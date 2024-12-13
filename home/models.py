@@ -23,7 +23,17 @@ class Products (models.Model):
     def __str__(self):
         return self.name
 
+class Favorite(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    product=models.ForeignKey(Products, on_delete=models.CASCADE)
 
+
+    class Meta:
+        unique_together=('user','product')
+
+    def __str__(self):
+     return f"{self.user.username} favorited {self.product.name}"
+    
 class Order(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     total_price=models.DecimalField(max_digits=10, decimal_places=2)

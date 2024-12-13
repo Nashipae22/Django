@@ -14,4 +14,5 @@ urlpatterns = [
     path('kitch/', views.kitch, name='kitch'),
     path('bath/', views.bath, name='bath'),
     path('search/', views.search, name='search'),
+   
 ]
