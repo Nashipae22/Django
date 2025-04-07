@@ -11,7 +11,18 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url="login")
 def home(request):
  products=Products.objects.all()
- return render(request, "home/homep.html", {'products': products})
+ household_category = Category.objects.get(name="Household Items")
+ household_products = Products.objects.filter(category=household_category)
+ electronic_category = Category.objects.get(name="Electronic Items")
+ electronic_products = Products.objects.filter(category=electronic_category)
+ bathroom_category=Category.objects.get(name="Bathroom Items")
+ bathroom_products = Products.objects.filter(category=bathroom_category)
+ return render(request, "home/homep.html", {
+   'products': products,
+   "household_products": household_products,
+   'electronic_products':electronic_products,
+   'bathroom_products':bathroom_products,
+   })
 
 def user_signup(request):
  if request.user.is_authenticated:
